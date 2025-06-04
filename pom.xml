@@ -7,23 +7,23 @@
     <groupId>com.example</groupId>
     <artifactId>demo-project</artifactId>
     <version>1.0-SNAPSHOT</version>
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.owasp</groupId>
+      <artifactId>dependency-check-maven</artifactId>
+      <version>7.1.1</version>
+      <executions>
+        <execution>
+          <goals>
+            <goal>check</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
 
-    <build>
-        <plugins>
-<plugin>
-  <groupId>com.github.spotbugs</groupId>
-  <artifactId>spotbugs-maven-plugin</artifactId>
-  <version>4.7.3.0</version>
-  <executions>
-    <execution>
-      <goals>
-        <goal>check</goal>
-      </goals>
-    </execution>
-  </executions>
-</plugin>
-        </plugins>
-    </build>
 
     <dependencies>
         <!-- Add JUnit or other testing dependencies here -->
