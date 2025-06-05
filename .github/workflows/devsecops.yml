@@ -1,0 +1,30 @@
+name: DevSecOps CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+
+    - name: Build with Maven
+      run: mvn clean install
+
+    - name: OWASP Dependency Check
+      run: mvn org.owasp:dependency-check-maven:check
+
+    - name: Docker Build
+      run: docker build -t ${{ github.repository }} .
+
+    - name: Docker Scan
+      run: docker scan ${{ github.repository }}
